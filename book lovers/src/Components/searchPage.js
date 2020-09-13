@@ -42,7 +42,6 @@ const SearchPage = () => {
 
     const getBooks = () => {
 
-        //const api_key = 'AIzaSyDW9-Nr9q6-DMFJZBytdmr0rYjg2hbxLIQ'; 
         const url = `https://www.googleapis.com/books/v1/volumes?q=${query.keyWord}&maxResults=${query.numberResult}&orderBy=${query.order}`;
         
         axios.get(url)
