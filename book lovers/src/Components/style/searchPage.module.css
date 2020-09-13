@@ -1,0 +1,157 @@
+.page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Catamaran', sans-serif;
+    background-color: #ffffff;
+    background-image: url('img/background-homepage.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.header {
+    width: 100%;
+    background-color: #0077b6;
+    color: #ffffff;
+    margin-top: 0;
+    padding: 4vh auto 2vh auto;
+    text-align: center;
+    font-family: 'Patua One', cursive;
+    font-size: 2em;
+    position: fixed;
+}
+
+.form {
+    margin-top: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 20vh;
+}
+
+.divForm1 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.divForm2 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-right: 10%;
+}
+
+.textInput {
+    padding: 10px;
+    width: 40%;
+    border-radius: 10px 0 0 10px;
+    border: 2px solid #0077b6;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.button {
+    padding: 12px;
+    border: 0;
+    background-color: #0077b6;
+    color: #ffffff;
+    border-radius: 0 10px 10px 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.button:hover{
+    cursor: pointer;
+    background-color: #0584c9;
+}
+.textInput:focus, .orderInput:focus, .numberInput:focus, .button:focus{outline: none;}
+
+.numberInput {
+    padding: 10px;
+    text-align: center;
+    margin-left: 15px;
+    width: 30vh;
+    border-radius: 10px;
+    border: 2px solid #0077b6;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.orderInput {
+    padding: 10px;
+    text-align: center;
+    margin-left: 15px;
+    width: 33vh;
+    border-radius: 10px;
+    border: 2px solid #0077b6;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.option {font-family: 'Catamaran', sans-serif;}
+.label {font-weight: bold;}
+
+.bookList {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-top: 10vh;
+}
+
+.swalButton {
+    background-color: #0077b6;
+    color: #ffffff;
+    border: none;
+}
+.swalButton:hover {
+    background-color: #0584c9 !important; 
+    color: #ffffff !important;
+}
+
+@media only screen and (max-width:540px) {
+    .page {
+        background-image: url('img/background-homepage-mobile.jpg');
+    }
+    .form {
+        flex-direction: column;
+    }
+    .divForm1 {
+        width: 100%;
+    }
+    .divForm2 {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-right: 0;
+    }
+    .textInput {
+        width: 70%;
+    }
+    .numberInput {
+        margin-top: 10px;
+        width: 15vh;
+    }
+    .orderInput {
+        width: 18vh;
+        margin-top: 10px;
+    }
+    .label {
+        font-size: 0.8em;
+    }
+}
+
+@media only screen and (min-width:541px) and (max-width:1024px) { 
+    .page {
+        background-image: url('img/background-homepage-tablet.jpg');
+    }
+}

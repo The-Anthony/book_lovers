@@ -1,0 +1,49 @@
+.book {
+    width: 35%;
+    height: 80vh;
+    border-radius: 20px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Catamaran', sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #ffffff;
+    padding: 10px 20px 20px 20px ;
+}
+
+.title {
+    font-family: 'Patua One', cursive;
+}
+.image {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #0077b6;
+    color: #ffffff;
+}
+.button:hover{
+    cursor: pointer;
+    background-color: #0584c9;
+}
+.button:focus{outline: none;}
+.image:hover{cursor: pointer;}
+
+@media only screen and (max-width:540px) {
+    .book {
+        width: 70%;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width:541px) and (max-width:1024px) { 
+    .book {
+        width: 43%;
+        height: auto;
+    }
+}
