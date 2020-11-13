@@ -15,13 +15,37 @@
 
 .div {
     min-height: 100vh;
-    max-width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     margin: 0;
     padding: 0; 
+}
+
+.arrowDiv {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 1s;
+}
+
+.arrowDiv:hover {
+    cursor: pointer;
+    background-color: #cccccc;
+}
+
+.arrow {
+    width: 90%;
 }
 
 .title {
@@ -69,6 +93,16 @@
     margin-right: 10px;
 }
 
+.descrDiv {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .informationDiv {
     width: 40%;
     padding: 10px;
@@ -112,6 +146,9 @@
     }
     .title {
         text-align: center;
+    }
+    .arrowDiv {
+        top: 20%;
     }
     .img {
         margin-left: auto;

@@ -1,11 +1,23 @@
 import React, {useContext, useState, useEffect} from 'react';
+
+// Context dell'ISBN
 import {IsbnContext} from './IsbnContext';
-import axios from 'axios'
-import style from './style/bookPage.module.css'
+// Libreria Axios per richieste all'API
+import axios from 'axios';
+// Stile
+import style from './style/bookPage.module.css';
+// Immagine
+import backArrow from './style/img/backArrow.svg';
+//Componenti react router
+import {Link, useHistory} from 'react-router-dom';
+
+
 const BookPage = () => {
      
     const [book, setBook] = useState([])
     const [isbn, setIsbn] = useContext(IsbnContext);
+    //Mi permette di accedere alla cronologia
+    const history = useHistory();
 
     const getInformation = () => {
         
@@ -16,7 +28,8 @@ const BookPage = () => {
             setBook(res.data.items);
         })
         .catch ((err) => {
-            console.log('ERRORE ---> ' + err)
+            console.log('ERRORE ---> ' + err);
+            history.push('/404');
         })
 
     }
@@ -31,9 +44,18 @@ const BookPage = () => {
  
     return (
         <div className={style.bookPage}>
-            {book.map((item, index) => (
+
+            <Link to='/search'>
+                <div className={style.arrowDiv}>
+                    <img src={backArrow} alt="Freccia per tornare alla pagina precedente" className={style.arrow}/>
+                </div>
+            </Link>
+
+            {book !== undefined ? book.map((item, index) => (
             <div key={index} className={style.div}>
+                
                 <h1 className={style.title}>{item.volumeInfo.title}</h1>
+
                 <div className={style.rowDiv}>
                    <img 
                    className={style.img}
@@ -45,11 +67,14 @@ const BookPage = () => {
                         <h2><span className={style.blueSpan}>Autore:</span> {item.volumeInfo.authors}</h2>
                     </div> 
                 </div>
-                <div className={style.rowDiv}>
+
+                <div className={style.descrDiv}>
+
                     <p className={style.description}> 
                         <span className={style.blueSpan}>Descrizione: </span> 
                         {(item.volumeInfo.description !== undefined && item.volumeInfo.description !== '') ? item.volumeInfo.description : 'Descrizione non disponibile' }
                     </p>
+
                     <div className={style.informationDiv}>
                         <p><span className={style.blueSpan}>Data di pubblicazione: </span>
                             {item.volumeInfo.publishedDate ? item.volumeInfo.publishedDate.slice(0, 10) : 'Informazione non disponibile' }
@@ -59,19 +84,21 @@ const BookPage = () => {
                             {item.volumeInfo.pageCount !== undefined ? item.volumeInfo.pageCount : 'Informazione non disponibile'}
                         </p>
                     </div> 
+                    
                 </div>
+
                 <div className={style.priceDiv}>
                     <p> <span className={style.blueSpan}>Prezzo: </span> 
                         {item.saleInfo.listPrice !== undefined ? (item.saleInfo.listPrice.amount + '€') : 'Informazione non disponibile'}
                     </p>
-                    <a className={style.link} target='_blank'
+                    <a className={style.link} target='_blank' rel="noopener noreferrer"
                     href={item.volumeInfo.infoLink !== undefined ? item.volumeInfo.infoLink : ''}>
                         Acquista qui
                     </a> 
                 </div>
                 
             </div>
-        ))}
+        )): history.push('/404') }
         </div>
         
     )

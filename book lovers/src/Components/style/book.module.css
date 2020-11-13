@@ -26,6 +26,7 @@
     padding: 10px;
     background-color: #0077b6;
     color: #ffffff;
+    text-align: center;
 }
 .button:hover{
     cursor: pointer;

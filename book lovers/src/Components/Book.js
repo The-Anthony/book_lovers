@@ -18,11 +18,11 @@ const Book = (props) => {
                 {props.title.slice(0,24) + '...'} 
             </h1>
             <h3 className={style.author}>di {props.authors}</h3>
-            <Link to={'/' + props.isbn}>
+            <Link to={'/bookisbn=' + props.isbn}>
                 <img src={props.img} alt="Immagine di copertina del libro non disponibile" className={style.image} onClick={newIsbn}/>
             </Link>
             <p>Anno di pubblicazione: {props.published.slice(0, 4)}</p>
-            <Link to={'/' + props.isbn}>
+            <Link to={'/bookisbn=' + props.isbn}>
                 <button 
                     className={style.button}
                     onClick={newIsbn}

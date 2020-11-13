@@ -1,21 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useHistory} from 'react-router-dom'
 import axios from 'axios';
 import Book from './Book';
 import style from './style/searchPage.module.css';
 
+//Immagine di caricamento
+import loading from './style/img/loading.gif';
+
+//Context dove vengono imagazzinati i libri
+import { BookContext } from './bookContext';
+
 
 const SearchPage = () => {
 
-    const [book, setBook] = useState([]);
-    const [search, setSearch] = useState('');
-    const [numResult, setNumber] = useState(8);
-    const [order, setOrder] = useState('relevance');
+    const [book, setBook] = useContext(BookContext); //Dove andranno i dati dei libri
+    const [search, setSearch] = useState(''); //Valore dell'input di ricerca
+    const [numResult, setNumber] = useState(8); //Numero di risultati visualizzati
+    const [order, setOrder] = useState('relevance'); //Ordine di visualizzazione
     const [query, setQuery] = useState({
         'keyWord': search,
         'numberResult': numResult,
         'order': order,
-    });
+    }); // Elementi da unire all'url per richiedre i dati all'API
+
+    const [loadingContent, setLoading] = useState('');
 
     const history = useHistory();
 
@@ -34,7 +42,7 @@ const SearchPage = () => {
     const getSearch = (event) => {
         event.preventDefault();
         setQuery({
-            'keyWord': search,
+            'keyWord': search.trim(),
             'numberResult': numResult,
             'order': order,
         })
@@ -42,14 +50,18 @@ const SearchPage = () => {
 
     const getBooks = () => {
 
+        setLoading(<div className={style.loadingActive}><img alt='loading gif' src={loading} className={style.loading}/></div>)
+
         const url = `https://www.googleapis.com/books/v1/volumes?q=${query.keyWord}&maxResults=${query.numberResult}&orderBy=${query.order}`;
         
         axios.get(url)
         .then((res) => {
-            setBook(res.data.items)
+            setBook(res.data.items);
+            setLoading('');
         })
         .catch((err) => {
-            history.replace('/error')
+            history.replace('/error');
+            setLoading('');
         })
         
     }
@@ -104,14 +116,16 @@ const SearchPage = () => {
                         </select>
                     </label>
                     
-                </div>
-
-                
+                </div>    
                 
             </form>
 
+            <div className={style.loadingDiv}>
+                {loadingContent}
+            </div>
+
             <div className={style.bookList}>
-                {book.map((item, index) => (
+                {book !== undefined ? book.map((item, index) => (
                 <Book 
                 key={index}
                 title={item.volumeInfo.title}
@@ -120,7 +134,7 @@ const SearchPage = () => {
                 published={item.volumeInfo.publishedDate ? item.volumeInfo.publishedDate : '' }
                 isbn={item.volumeInfo.industryIdentifiers !== undefined ? item.volumeInfo.industryIdentifiers[0].identifier : '404'}
                 />
-            ))}
+            )) : history.push('/error')}
             </div>
             
 
